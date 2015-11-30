@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .container
+        .starter-template
+            h1 Bootstrap starter template
+            p.lead
+                | Use this document as a way to quickly start any new project.
+                br
+                |  All you get is this text and a mostly barebones HTML document.
+            button(class="btn btn-primary btn-lg userbtn", onClick="getUser()" )
+                | Get User From Database
+    div.result(style="display:none;")
+        h3 This ran against out database using node modules!
+        h2 Results:
+        h4.email Email: 
+                
+    script(type="text/javascript").
+        getUser = function(){
+            $.ajax({
+                method: "GET",
+                url: "/users/21",
+                 
+            }).success(function(data){
+                if(data){
+                    $(".result").show();
+                    var emailText = $(".email").text();
+                    $(".email").text(emailText + data.Email);
+                    $(".userbtn").prop("disabled",true);
+                }
+            });
+            return false;
+        };

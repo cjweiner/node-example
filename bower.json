@@ -1,0 +1,22 @@
+{
+  "name": "node-example",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Corey Weiner"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}

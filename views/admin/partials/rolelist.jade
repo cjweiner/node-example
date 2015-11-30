@@ -1,0 +1,16 @@
+﻿
+if roles.length > 0
+    table.table
+        thead
+            tr
+                th Role
+                th Created
+        tbody
+            each role in roles
+                tr
+                    td|#{role.title}
+                    td|#{role.createDate}
+else
+    .container
+        .starter-template
+            h2 No Roles Exist

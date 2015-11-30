@@ -1,0 +1,49 @@
+﻿extends ../layout
+
+block content
+    .container
+        h1 Add/Edit Roles
+        br
+        include ./partials/rolelist
+    .container
+        .col-md-4
+            |&nbsp;
+        .col-md-4
+            button.btn.btn-default.btn-primary.btn-block(type='button', data-target='#myModal', data-toggle='modal') Add Role
+        .col-md-4
+            |&nbsp;
+
+    .modal.fade(id='myModal', tabindex='-1',aria-labelledby="myModalLabel")
+        .modal-dialog(role="document")
+            .modal-content
+                .modal-header
+                    button.close(data-dismiss="modal",aria-label="Close",type="button")
+                        span(aria-hidden="true")
+                            |&nbsp;
+                    h4 Enter New Role.
+                .modal-body
+                    form(role='form', action="/admin/roles",method="post", style='max-width: 300px;')
+                        .form-group
+                            input.form-control(type='text', name="title", placeholder='Enter Role')
+                .modal-footer
+                    button.btn.btn-default(type='button',data-dismiss='modal') Close
+                    button.btn.btn-primary(type='Submit' id='submitBtn') Save
+
+    script(type='text/javascript').
+        $(function(){
+           $('#submitBtn').on('click', function(e){
+                e.preventDefault();
+                $.ajax({
+                    url: "/admin/roles",
+                    type: "POST",
+                    data: $("form").serialize(),
+                    success: function(data){
+                        $('#myModal').modal('toggle');
+                        alert("Successfully submitted.");
+                    },
+                    error: function(xhr,o,err){
+                        alert(xhr.responseText);
+                    }
+                });
+           }); 
+        });
